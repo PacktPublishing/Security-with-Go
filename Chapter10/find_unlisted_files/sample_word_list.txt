@@ -1,0 +1,12 @@
+robots.txt
+.gitignore
+index-old.html
+backup.zip
+id_rsa
+debug.log
+.git/HEAD
+database.sql
+config.ini
+settings.ini
+settings.php.bak
+CHANGELOG.txt
