@@ -18,15 +18,15 @@ func main() {
 	firstElement := mySlice[0]
 	fmt.Println("First element:", firstElement)
 
-	//To get only the second and third element, use:
+	// To get only the second and third element, use:
 	subset := mySlice[1:4]
 	fmt.Println(subset)
 
-	//To get the full contents of a slice except for the first element, use:
+	// To get the full contents of a slice except for the first element, use:
 	subset = mySlice[1:]
 	fmt.Println(subset)
 
-	//To get the full contents of a slice except for the last element, use:
+	// To get the full contents of a slice except for the last element, use:
 	subset = mySlice[0 : len(mySlice)-1]
 	fmt.Println(subset)
 

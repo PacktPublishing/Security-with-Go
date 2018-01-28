@@ -50,11 +50,12 @@ func main() {
 
 	// Output base64 encoded image as HTML image tag to STDOUT
 	// This img tag can be embedded in an HTML page
-	imgTag := "<img src=\"data:image/png;base64," + encodedPngData + "\" />"
+	imgTag := "<img src=\"data:image/png;base64," +
+		encodedPngData + "\" />"
 	fmt.Println(imgTag) // For use in HTML
 
 	// Generate and write to file with one function
-	// This is a standalone function. It can be used by istelf
+	// This is a standalone function. It can be used by itself
 	// without any of the above code
 	err = qrcode.WriteFile(
 		dataToEncode,

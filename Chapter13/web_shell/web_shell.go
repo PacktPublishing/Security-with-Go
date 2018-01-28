@@ -30,7 +30,10 @@ func requestHandler(writer http.ResponseWriter, request *http.Request) {
 	// Get command to execute from GET query parameters
 	cmd := request.URL.Query().Get("cmd")
 	if cmd == "" {
-		fmt.Fprintln(writer, "No command provided. Example: /?cmd=whoami")
+		fmt.Fprintln(
+			writer,
+			"No command provided. Example: /?cmd=whoami",
+		)
 		return
 	}
 

@@ -23,7 +23,7 @@ func main() {
 
 	// Wait for all threads to finish
 	for activeThreads > 0 {
-		<- doneChannel
+		<-doneChannel
 		activeThreads--
 	}
 }
@@ -31,7 +31,7 @@ func main() {
 func fuzz(ip string, port int, fuzzSize int, doneChannel chan bool) {
 	log.Printf("Fuzzing %d.\n", fuzzSize)
 
-	conn, err := net.DialTimeout("tcp", ip + ":" + strconv.Itoa(port), time.Second*10)
+	conn, err := net.DialTimeout("tcp", ip+":"+strconv.Itoa(port), time.Second*10)
 	if err != nil {
 		log.Printf("Fuzz of %d attempted. Could not connect to server. %s\n", fuzzSize, err)
 		doneChannel <- true
@@ -41,10 +41,14 @@ func fuzz(ip string, port int, fuzzSize int, doneChannel chan bool) {
 	// Write random bytes to server
 	randomBytes := make([]byte, fuzzSize)
 	rand.Read(randomBytes)
-	conn.SetWriteDeadline(time.Now().Add(time.Second *5))
+	conn.SetWriteDeadline(time.Now().Add(time.Second * 5))
 	numBytesWritten, err := conn.Write(randomBytes)
 	if err != nil { // Error writing
-		log.Printf("Fuzz of %d attempted. Could not write to server. %s\n", fuzzSize, err)
+		log.Printf(
+			"Fuzz of %d attempted. Could not write to server. %s\n",
+			fuzzSize,
+			err,
+		)
 		doneChannel <- true
 		return
 	}
@@ -55,15 +59,27 @@ func fuzz(ip string, port int, fuzzSize int, doneChannel chan bool) {
 
 	// Read up to 4k back
 	readBuffer := make([]byte, 4096)
-	conn.SetReadDeadline(time.Now().Add(time.Second *5))
+	conn.SetReadDeadline(time.Now().Add(time.Second * 5))
 	numBytesRead, err := conn.Read(readBuffer)
 	if err != nil { // Error reading
-		log.Printf("Fuzz of %d attempted. Could not read from server. %s\n", fuzzSize, err)
+		log.Printf(
+			"Fuzz of %d attempted. Could not read from server. %s\n",
+			fuzzSize,
+			err,
+		)
 		doneChannel <- true
 		return
 	}
 
-	log.Printf("Sent %d bytes to server. Read %d bytes back:\n========\n%s\n\n", fuzzSize, numBytesRead, readBuffer[0:numBytesRead])
+	log.Printf(
+		"Sent %d bytes to server. Read %d bytes back:\n",
+		fuzzSize,
+		numBytesRead,
+	)
+	log.Printf(
+		"Data:\n%s\n\n",
+		readBuffer[0:numBytesRead],
+	)
 
 	doneChannel <- true
 }

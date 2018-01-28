@@ -29,8 +29,10 @@ func logRequest(response http.ResponseWriter, request *http.Request) {
 		fmt.Fprint(response, "<p><span style=\"color:red;\">Invalid credentials.</span></p>")
 	}
 	fmt.Fprint(response, "<form method=\"POST\">")
-	fmt.Fprint(response, "User:<input type=\"text\" name=\"username\"><br>")
-	fmt.Fprint(response, "Pass:<input type=\"password\" name=\"pass\"><br>")
+	fmt.Fprint(response,
+		"User:<input type=\"text\" name=\"username\"><br>")
+	fmt.Fprint(response,
+		"Pass:<input type=\"password\" name=\"pass\"><br>")
 	fmt.Fprint(response, "<input type=\"submit\"></form><br>")
 	fmt.Fprint(response, "</body></html>")
 }

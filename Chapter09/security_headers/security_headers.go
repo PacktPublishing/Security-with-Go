@@ -33,7 +33,6 @@ func main() {
 	// Set up as many middleware functions as you need, in order
 	negroniHandler.Use(negroni.HandlerFunc(addSecureHeaders))
 	negroniHandler.Use(negroni.NewLogger())
-	negroniHandler.Use(negroni.NewStatic(http.Dir("/path/to/static/files")))
 	negroniHandler.UseHandler(multiplexer)
 
 	http.ListenAndServe("localhost:3000", negroniHandler)

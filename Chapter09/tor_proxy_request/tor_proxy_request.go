@@ -21,7 +21,10 @@ func main() {
 
 	// Set up a custom HTTP transport for the client
 	torTransport := &http.Transport{Proxy: http.ProxyURL(torProxyUrl)}
-	client := &http.Client{Transport: torTransport, Timeout: time.Second * 5}
+	client := &http.Client{
+		Transport: torTransport,
+		Timeout:   time.Second * 5,
+	}
 
 	// Make request
 	response, err := client.Get(targetUrl)

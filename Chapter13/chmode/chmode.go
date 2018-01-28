@@ -23,7 +23,8 @@ func main() {
 	// And the 32 specifies the bit size of the number want back. (uin32)
 	fileModeValue, err := strconv.ParseUint(mode, 8, 32)
 	if err != nil {
-		log.Fatal("Error converting permission string to octal value. ", err)
+		log.Fatal("Error converting permission string to octal value. ",
+			err)
 	}
 	fileMode := os.FileMode(fileModeValue) // os.FileMode is a named type for uint32
 

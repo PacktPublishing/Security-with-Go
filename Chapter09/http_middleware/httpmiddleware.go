@@ -9,7 +9,10 @@ import (
 )
 
 // Custom middleware handler logs user agent
-func customMiddlewareHandler(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+func customMiddlewareHandler(rw http.ResponseWriter,
+	r *http.Request,
+	next http.HandlerFunc,
+) {
 	log.Println("Incoming request: " + r.URL.Path)
 	log.Println("User agent: " + r.UserAgent())
 
@@ -18,7 +21,7 @@ func customMiddlewareHandler(rw http.ResponseWriter, r *http.Request, next http.
 
 // Return response to client
 func indexHandler(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "You requested: " + request.URL.Path)
+	fmt.Fprintf(writer, "You requested: "+request.URL.Path)
 }
 
 func main() {
