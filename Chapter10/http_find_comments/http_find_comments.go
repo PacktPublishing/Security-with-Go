@@ -30,7 +30,7 @@ func main() {
 		log.Fatal("Error reading HTTP body. ", err)
 	}
 
-	// Look for mailto: links using a regular expression
+	// Look for HTML comments using a regular expression
 	re := regexp.MustCompile("<!--(.|\n)*?-->")
 	matches := re.FindAllString(string(body), -1)
 	if matches == nil {

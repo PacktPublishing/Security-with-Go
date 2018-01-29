@@ -89,7 +89,7 @@ func main() {
 	// Decode the packet as our custom layer
 	customLayer := packet.Layer(CustomLayerType)
 	if customLayer != nil {
-		fmt.Println("Packet was successfully decoded with custom layer decoder.")
+		fmt.Println("Packet was successfully decoded.")
 		customLayerContent, _ := customLayer.(*CustomLayer)
 		// Now we can access the elements of the custom struct
 		fmt.Println("Payload: ", customLayerContent.LayerPayload())

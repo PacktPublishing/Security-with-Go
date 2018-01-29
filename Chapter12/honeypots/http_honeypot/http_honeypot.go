@@ -26,7 +26,7 @@ func logRequest(response http.ResponseWriter, request *http.Request) {
 	fmt.Fprint(response, "<html><body>")
 	fmt.Fprint(response, "<h1>Login</h1>")
 	if request.Method == http.MethodPost {
-		fmt.Fprint(response, "<p><span style=\"color:red;\">Invalid credentials.</span></p>")
+		fmt.Fprint(response, "<p>Invalid credentials.</p>")
 	}
 	fmt.Fprint(response, "<form method=\"POST\">")
 	fmt.Fprint(response,

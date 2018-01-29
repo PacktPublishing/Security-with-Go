@@ -16,7 +16,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("creating sym")
+	fmt.Println("Creating symlink.")
 	// Create a symlink
 	err = os.Symlink("original.txt", "original_sym.txt")
 	if err != nil {
